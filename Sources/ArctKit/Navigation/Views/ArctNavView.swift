@@ -1,0 +1,34 @@
+//
+//  ArctNavView.swift
+//  ArctKit
+//
+//  Created by Arindam Karmakar on 18/02/25.
+//
+
+import SwiftUI
+
+public struct ArctNavView<Child, Route>: View where Child: View , Route: ArctRoute {
+    let routeBuilder: (Route) -> Child
+    let initialRoute: Route
+    
+    public init(routeBuilder: @escaping (Route) -> Child, initialRoute: Route) {
+        self.routeBuilder = routeBuilder
+        self.initialRoute = initialRoute
+    }
+    
+    @ObservedObject var arct = Arct
+    
+    public var body: some View {
+        NavigationStack(path: $arct.routeStack) {
+            Group {
+                if let root = arct.initialRoute as? Route {
+                    routeBuilder(root)
+                } else {
+                    Text("No initial route set!")
+                }
+            }
+            .onAppear { arct.initialRoute = self.initialRoute }
+            .navigationDestination(for: Route.self, destination: routeBuilder)
+        }
+    }
+}

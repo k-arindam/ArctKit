@@ -12,11 +12,17 @@ let package = Package(
             name: "ArctKit",
             targets: ["ArctKit"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/k-arindam/MLXKit.git", from: "0.0.1"),
+        .package(url: "https://github.com/marmelroy/PhoneNumberKit.git", from: "4.0.1")
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "ArctKit"),
+            name: "ArctKit",
+            dependencies: ["MLXKit", "PhoneNumberKit"]
+        ),
         .testTarget(
             name: "ArctKitTests",
             dependencies: ["ArctKit"]
