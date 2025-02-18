@@ -1,13 +1,13 @@
 {
-  "originHash" : "74fb7e2e46f73da5c0ca3b214a5236bf061fb7994c2d16dd4f25ee819f1fb8fc",
+  "originHash" : "f8bd599ff56656be5a859f523f7cfdc7ebe79e1fe537cfbf17610bfaf1c496ef",
   "pins" : [
     {
       "identity" : "mlxkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/k-arindam/MLXKit.git",
       "state" : {
-        "revision" : "035a7f484a67be1d657c45390c3f6e443001ff24",
-        "version" : "0.0.1"
+        "revision" : "d77a984f17a2f790786106dcd7b4c0cdfe103b2d",
+        "version" : "0.0.2"
       }
     },
     {
@@ -17,6 +17,24 @@
       "state" : {
         "revision" : "4ca759e952bb62162afb8448b3240a63becddd86",
         "version" : "4.0.1"
+      }
+    },
+    {
+      "identity" : "swift-docc-plugin",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-docc-plugin",
+      "state" : {
+        "revision" : "85e4bb4e1cd62cec64a4b8e769dcefdf0c5b9d64",
+        "version" : "1.4.3"
+      }
+    },
+    {
+      "identity" : "swift-docc-symbolkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-docc-symbolkit",
+      "state" : {
+        "revision" : "b45d1f2ed151d057b54504d653e0da5552844e34",
+        "version" : "1.0.0"
       }
     }
   ],
