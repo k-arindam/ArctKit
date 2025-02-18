@@ -1,0 +1,24 @@
+{
+  "originHash" : "6c01baa1ece25ac50341365a41117810bbbdac7819e21ca581387108dff1f0b5",
+  "pins" : [
+    {
+      "identity" : "mlxkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/k-arindam/MLXKit.git",
+      "state" : {
+        "revision" : "d77a984f17a2f790786106dcd7b4c0cdfe103b2d",
+        "version" : "0.0.2"
+      }
+    },
+    {
+      "identity" : "phonenumberkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/marmelroy/PhoneNumberKit.git",
+      "state" : {
+        "revision" : "4ca759e952bb62162afb8448b3240a63becddd86",
+        "version" : "4.0.1"
+      }
+    }
+  ],
+  "version" : 3
+}
