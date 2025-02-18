@@ -15,7 +15,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: k-arindam/setup-swift@v6.0.0
     - name: Swift version
       run: swift --version
     - name: Build
