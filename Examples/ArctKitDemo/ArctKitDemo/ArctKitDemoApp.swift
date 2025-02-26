@@ -10,11 +10,18 @@ import ArctKit
 
 @main
 struct ArctKitDemoApp: App {
-    let initialBindings = [Constants.dataControllerKey: DataController()]
-    
     var body: some Scene {
+        let config = ArctAppConfig(
+            appGroup: "group.in.karindam.ArctKitDemo",
+            initialBindings: [
+                Constants.dataControllerKey: DataController()
+            ],
+            initialRoute: AppRoutes.home,
+            routeBuilder: AppRoutes.builder
+        )
+        
         WindowGroup {
-            ArctApp(routeBuilder: AppRoutes.builder, initialRoute: AppRoutes.home, initialBindings: initialBindings)
+            ArctApp(config: config)
         }
     }
 }

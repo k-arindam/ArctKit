@@ -28,7 +28,7 @@ struct HomeView: View {
             }
             
             Button("Open Settings") {
-                Arct.push(AppRoutes.settings)
+                try? Arct.push(AppRoutes.settings)
             }
             .buttonStyle(.borderedProminent)
         }

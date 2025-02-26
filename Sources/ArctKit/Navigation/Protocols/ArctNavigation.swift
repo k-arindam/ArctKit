@@ -13,19 +13,19 @@ internal protocol ArctNavigation {
     
     /// Pushes a new route onto the navigation stack.
     /// - Parameter _: A route conforming to `ArctRoute`.
-    func push<T>(_: T) -> Void where T: ArctRoute
+    func push<T>(_: T) throws(ArctError) -> Void where T: ArctRoute
     
     /// Replaces the current route with a new one in the navigation stack.
     /// - Parameter _: A route conforming to `ArctRoute`.
-    func pushReplacement<T>(_: T) -> Void where T: ArctRoute
+    func pushReplacement<T>(_: T) throws(ArctError) -> Void where T: ArctRoute
     
     /// Pops the topmost route from the navigation stack.
-    func pop() -> Void
+    func pop() throws(ArctError) -> Void
     
     /// Pops all routes and navigates back to the root.
-    func popToRoot() -> Void
+    func popToRoot() throws(ArctError) -> Void
     
     /// Replaces the root of the navigation stack with a new route.
     /// - Parameter route: The new root route conforming to `ArctRoute`.
-    func replaceRoot<T>(with route: T) -> Void where T: ArctRoute
+    func replaceRoot<T>(with route: T) throws(ArctError) -> Void where T: ArctRoute
 }

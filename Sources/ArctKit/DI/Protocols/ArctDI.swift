@@ -35,12 +35,12 @@ internal protocol ArctDI {
     
     /// Removes an instance associated with a given key.
     /// - Parameter key: The key of the instance to be removed.
-    func remove(for key: String) -> Void
+    func remove(for key: String) throws(ArctError) -> Void
     
     /// Checks if an instance is registered for a given key.
     /// - Parameter key: The key to check.
     /// - Returns: `true` if an instance is registered, otherwise `false`.
-    func isRegistered(_ key: String) -> Bool
+    func isRegistered(_ key: String) throws(ArctError) -> Bool
 }
 
 /// An extended dependency injection protocol with additional lazy-loading capabilities.

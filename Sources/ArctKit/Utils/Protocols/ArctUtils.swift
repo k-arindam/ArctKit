@@ -7,28 +7,92 @@
 
 import Foundation
 
+/// A utility protocol defining various validation and file-type detection methods.
+///
+/// This protocol provides helper functions for common string and file validations,
+/// such as checking email formats, username validity, numeric-only values,
+/// and detecting file types based on their URLs.
 internal protocol ArctUtils {
-    func isEmail(_ email: String) -> Bool
     
-    func isNumericOnly(_ input: String) -> Bool /// r'^\d+$'
-    func isAlphabetOnly(_ input: String) -> Bool /// r'^[a-zA-Z]+$'
-    func hasCapitalLetter(_ input: String) -> Bool /// r'[A-Z]'
+    // MARK: - String Validation
+    
+    /// Checks if the given string is a valid email address.
+    ///
+    /// - Parameter _: The string to validate.
+    /// - Returns: `true` if the string is a valid email, `false` otherwise.
+    func isEmail(_: String) -> Bool
+    
+    /// Checks if the given string is a valid username.
+    ///
+    /// - Parameter _: The string to validate.
+    /// - Returns: `true` if the string follows username constraints, `false` otherwise.
+    func isUsername(_: String) -> Bool
+    
+    /// Checks if the given string is a valid phone number.
+    ///
+    /// - Parameter _: The string to validate.
+    /// - Returns: `true` if the string is a valid phone number, `false` otherwise.
+    func isPhoneNumber(_: String) -> Bool
 
-    func isVideo(_ path: String) -> Bool
-    func isImage(_ path: String) -> Bool
-    func isAudio(_ path: String) -> Bool
+    // MARK: - Character Type Checks
     
-    func isWord(_ path: String) -> Bool
-    func isPPT(_ path: String) -> Bool
-    func isExcel(_ path: String) -> Bool
-    func isPDF(_ path: String) -> Bool
-    func isTxt(_ path: String) -> Bool
-    func isHTML(_ path: String) -> Bool
+    /// Checks if the given string contains only numeric characters.
+    func isNumericOnly(_: String) -> Bool
     
-    func isDateTime(_ input: String) -> Bool /// r'^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}.\d{3}Z?$'
-    func isSHA1(_ input: String) -> Bool /// r'(([A-Fa-f0-9]{2}\:){19}[A-Fa-f0-9]{2}|[A-Fa-f0-9]{40})'
-    func isSHA256(_ input: String) -> Bool /// r'([A-Fa-f0-9]{2}\:){31}[A-Fa-f0-9]{2}|[A-Fa-f0-9]{64}'
-    func isIPv4(_ input: String) -> Bool /// r'^(?:(?:^|\.)(?:2(?:5[0-5]|[0-4]\d)|1?\d?\d)){4}$'
-    func isIPv6(_ input: String) -> Bool
-    func isHexadecimal(_ input: String) -> Bool /// r'^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$'
+    /// Checks if the given string contains only alphabetic characters.
+    func isAlphabetOnly(_: String) -> Bool
+    
+    /// Checks if the given string contains at least one capital letter.
+    func hasCapitalLetter(_: String) -> Bool
+
+    // MARK: - File Type Detection
+    
+    /// Checks if the given URL points to a video file.
+    func isVideo(_: URL) -> Bool
+    
+    /// Checks if the given URL points to an image file.
+    func isImage(_: URL) -> Bool
+    
+    /// Checks if the given URL points to an audio file.
+    func isAudio(_: URL) -> Bool
+
+    // MARK: - Document Type Detection
+    
+    /// Checks if the given URL points to a Word document.
+    func isWord(_: URL) -> Bool
+    
+    /// Checks if the given URL points to a PowerPoint file.
+    func isPPT(_: URL) -> Bool
+    
+    /// Checks if the given URL points to an Excel file.
+    func isExcel(_: URL) -> Bool
+    
+    /// Checks if the given URL points to a PDF document.
+    func isPDF(_: URL) -> Bool
+    
+    /// Checks if the given URL points to a plain text file.
+    func isTxt(_: URL) -> Bool
+    
+    /// Checks if the given URL points to an HTML file.
+    func isHTML(_: URL) -> Bool
+
+    // MARK: - Security & Networking Validation
+    
+    /// Checks if the given string is in a valid date-time format.
+    func isDateTime(_: String) -> Bool
+    
+    /// Checks if the given string is a valid SHA-1 hash.
+    func isSHA1(_: String) -> Bool
+    
+    /// Checks if the given string is a valid SHA-256 hash.
+    func isSHA256(_: String) -> Bool
+    
+    /// Checks if the given string is a valid IPv4 address.
+    func isIPv4(_: String) -> Bool
+    
+    /// Checks if the given string is a valid IPv6 address.
+    func isIPv6(_: String) -> Bool
+    
+    /// Checks if the given string is a valid hexadecimal number.
+    func isHexadecimal(_: String) -> Bool
 }

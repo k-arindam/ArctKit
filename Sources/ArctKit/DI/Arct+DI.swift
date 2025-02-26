@@ -18,7 +18,9 @@ extension ArctImpl: ArctDI, ArctDIPlus {
     /// - Throws: `ArctError.dependencyAlreadyRegistered` if an instance with the same key already exists.
     /// - Returns: The registered instance.
     public func put<T>(_ instance: T, with key: String) throws(ArctError) -> T where T: ArctController {
-        let exists: Bool = self.isRegistered(key)
+        guard appConfigured else { throw .arctappNotConfigured }
+        
+        let exists: Bool = try self.isRegistered(key)
         
         if exists {
             throw ArctError.dependencyAlreadyRegistered(key)
@@ -33,6 +35,8 @@ extension ArctImpl: ArctDI, ArctDIPlus {
     /// - Throws: `ArctError.dependencyNotFound` if the instance is not found.
     /// - Returns: The retrieved instance.
     public func find<T>(with key: String) throws(ArctError) -> T where T: ArctController {
+        guard appConfigured else { throw .arctappNotConfigured }
+        
         if let instance = self.dependencies[key] as? T {
             return instance
         }
@@ -47,7 +51,9 @@ extension ArctImpl: ArctDI, ArctDIPlus {
     /// - Throws: `ArctError.dependencyNotFound` if no existing instance is found with the given key.
     /// - Returns: The replaced instance.
     public func replace<T>(_ instance: T, with key: String) throws(ArctError) -> T where T: ArctController {
-        let exists: Bool = self.isRegistered(key)
+        guard appConfigured else { throw .arctappNotConfigured }
+        
+        let exists: Bool = try self.isRegistered(key)
         
         if !exists {
             throw ArctError.dependencyNotFound(key)
@@ -59,15 +65,19 @@ extension ArctImpl: ArctDI, ArctDIPlus {
     
     /// Removes an instance from the dependency container.
     /// - Parameter key: The key of the instance to be removed.
-    public func remove(for key: String) -> Void {
+    public func remove(for key: String) throws(ArctError) -> Void {
+        guard appConfigured else { throw .arctappNotConfigured }
+        
         self.dependencies.removeValue(forKey: key)
     }
     
     /// Checks whether an instance is registered under a given key.
     /// - Parameter key: The key to check.
     /// - Returns: `true` if an instance is registered, otherwise `false`.
-    public func isRegistered(_ key: String) -> Bool {
-        self.dependencies.keys.contains(where: { $0 == key })
+    public func isRegistered(_ key: String) throws(ArctError) -> Bool {
+        guard appConfigured else { throw .arctappNotConfigured }
+        
+        return self.dependencies.keys.contains(where: { $0 == key })
     }
     
     /// Lazily registers an instance (currently not implemented).
