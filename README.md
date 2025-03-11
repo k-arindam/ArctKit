@@ -57,15 +57,17 @@ struct MyApp: App {
 ### 2️⃣ Dependency Injection Made Easy 🧩
 
 ```swift
-// Register a service
+// Register a dependency
+let authControllerKey: String = "in.karindam.ArctKitDemo.auth"
+
 do {
-    try Arct.put(AuthService(), with: "authService")
+    _ = try Arct.put(AuthController(), with: authControllerKey)
 } catch {
     print("Failed to register dependency: \(error)")
 }
 
-// Retrieve a service
-let authService: AuthService? = try? Arct.find(with: "authService")
+// Retrieve a dependency
+let auth: AuthController? = try? Arct.find(with: authControllerKey)
 ```
 
 ### 3️⃣ Navigate Between Views Seamlessly 🛤
@@ -103,11 +105,12 @@ let username: String? = try? Arct.read(String.self, for: "username")
 
 For full documentation, visit [here](http://arctkit.karindam.in).
 
-## 🛠 Utility Functions (ArctUtils)
+## 🛠 Utility Functions
 
 ```swift
 let isValidEmail = Arct.isEmail("test@example.com")  // true
 let isIPv4 = Arct.isIPv4("192.168.1.1")  // true
+let isIPv4 = Arct.isIPv6("192.168.1.1")  // false
 ```
 
 ## 🤝 Contributing
